@@ -4,7 +4,7 @@ import tempfile
 import uuid
 
 from IPython.core.magic import Magics, cell_magic, magics_class
-from common import helper
+from common import ghelper
 
 compiler = '/usr/bin/g++-5'
 ext = '.cpp'
