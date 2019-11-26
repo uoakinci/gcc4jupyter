@@ -4,7 +4,7 @@
 - Load Extension
 > `%load_ext gcc_plugin`
 
-- Mark a cell to be treated as cuda cell
+- Mark a cell to be treated as cpp cell
 > `%%gcc --name example.cpp --compile false`
 >> NOTE: The cell must contain either code or comments to be run successfully. 
 >> It accepts 2 arguments. `-n` | `--name`  - which is the name of either Source or Header
@@ -13,7 +13,7 @@
 >> if the cell will be compiled and run right away or not. It might be usefull if you're playing in
 >> the `main` function
 
-- To compile and run all CUDA files you need to run
+- To compile and run all cpp files you need to run
 ```
 %%gcc_run
 # This line just to bypass an exeption and can contain any text
