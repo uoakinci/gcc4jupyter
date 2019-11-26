@@ -15,7 +15,7 @@ class GCCPluginV2(Magics):
         super(GCCPluginV2, self).__init__(shell)
         self.argparser = helper.get_argparser()
         current_dir = os.getcwd()
-        self.output_dir = os.path.join(current_dir, 'src')
+        self.output_dir = os.path.join(current_dir, 'src_cpp')
         if not os.path.exists(self.output_dir):
             os.mkdir(self.output_dir)
             print(f'created output directory at {self.output_dir}')
