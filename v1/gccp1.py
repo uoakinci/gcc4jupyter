@@ -21,7 +21,7 @@ class GCCPlugin(Magics):
     @staticmethod
     def compile(file_path):
         subprocess.check_output(
-            [compiler, file_path + ext, "-o", file_path + ".out", '-Wno-deprecated'], stderr=subprocess.STDOUT)
+            [compiler, file_path + ext, "-o", file_path + ".obj", '-Wno-deprecated'], stderr=subprocess.STDOUT)
 
     def run(self, file_path, timeit=False):
         if timeit:
@@ -30,7 +30,7 @@ class GCCPlugin(Magics):
                 magic_name="timeit", line="-q -o import subprocess", cell=stmt)
         else:
             output = subprocess.check_output(
-                [file_path + ".out"], stderr=subprocess.STDOUT)
+                [file_path + ".obj"], stderr=subprocess.STDOUT)
             output = output.decode('utf8')
             
         helper.print_out(output)
