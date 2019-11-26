@@ -13,7 +13,7 @@ class GCCPluginV2(Magics):
 
     def __init__(self, shell):
         super(GCCPluginV2, self).__init__(shell)
-        self.argparser = helper.get_argparser()
+        self.argparser = ghelper.get_argparser()
         current_dir = os.getcwd()
         self.output_dir = os.path.join(current_dir, 'src_cpp')
         if not os.path.exists(self.output_dir):
@@ -29,7 +29,7 @@ class GCCPluginV2(Magics):
     def compile(output_dir, file_paths, out):
         res = subprocess.check_output(
             [compiler, '-I' + output_dir, file_paths, "-o", out, '-Wno-deprecated'], stderr=subprocess.STDOUT)
-        helper.print_out(res)
+        ghelper.print_out(res)
 
     def run(self, timeit=False):
         if timeit:
@@ -41,7 +41,7 @@ class GCCPluginV2(Magics):
                 [self.out], stderr=subprocess.STDOUT)
             output = output.decode('utf8')
 
-        helper.print_out(output)
+        ghelper.print_out(output)
         return None
 
     @magic_arguments()
@@ -72,7 +72,7 @@ class GCCPluginV2(Magics):
                 self.compile(self.output_dir, file_path, self.out)
                 output = self.run(timeit=args.timeit)
             except subprocess.CalledProcessError as e:
-                helper.print_out(e.output.decode("utf8"))
+                ghelper.print_out(e.output.decode("utf8"))
                 output = None
         else:
             output = f'File written in {file_path}'
@@ -95,7 +95,7 @@ class GCCPluginV2(Magics):
             self.compile(self.output_dir, ' '.join(cuda_src), self.out)
             output = self.run(timeit=args.timeit)
         except subprocess.CalledProcessError as e:
-            helper.print_out(e.output.decode("utf8"))
+            ghelper.print_out(e.output.decode("utf8"))
             output = None
 
         return output
