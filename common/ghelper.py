@@ -9,5 +9,5 @@ def get_argparser():
 
 
 def print_out(out: str):
-    for l in out.decode('utf8').split('\n'):
+    for l in out.split('\n'):
         print(l)
