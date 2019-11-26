@@ -90,7 +90,7 @@ class GCCPlugin(Magics):
         try:
             cuda_src = os.listdir(self.output_dir)
             cuda_src = [os.path.join(self.output_dir, x)
-                        for x in cuda_src if x[-3:] == '.cu']
+                        for x in cuda_src if x[-3:] == '.cpp' or x[-3:] == '.c' ]
             print(f'found sources: {cuda_src}')
             self.compile(self.output_dir, ' '.join(cuda_src), self.out)
             output = self.run(timeit=args.timeit)
