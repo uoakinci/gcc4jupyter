@@ -1,5 +1,5 @@
-from v1.gccp1 import GCCPlugin as GCC_V1
-from v2.gccp2 import GCCPluginV2 as GCC_V2
+from v1a.gccp1 import GCCPlugin as GCC_V1
+from v2a.gccp2 import GCCPluginV2 as GCC_V2
 
 
 def load_ipython_extension(ip):
