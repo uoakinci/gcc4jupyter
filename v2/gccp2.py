@@ -9,10 +9,10 @@ compiler = '/usr/bin/gcc-5'
 
 
 @magics_class
-class GCCPlugin(Magics):
+class GCCPluginV2(Magics):
 
     def __init__(self, shell):
-        super(GCCPlugin, self).__init__(shell)
+        super(GCCPluginV2, self).__init__(shell)
         self.argparser = helper.get_argparser()
         current_dir = os.getcwd()
         self.output_dir = os.path.join(current_dir, 'src')
@@ -48,7 +48,7 @@ class GCCPlugin(Magics):
     @argument('-n', '--name', type=str, help='file name that will be produced by the cell. must end with .cpp extension')
     @argument('-c', '--compile', type=bool, help='Should be compiled?')
     @cell_magic
-    def cuda(self, line='', cell=None):
+    def gcc(self, line='', cell=None):
         args = parse_argstring(self.cuda, line)
         ex = args.name.split('.')[-1]
         if ex not in ['cpp', 'c', 'h']:
@@ -80,7 +80,7 @@ class GCCPlugin(Magics):
         return output
 
     @cell_magic
-    def cuda_run(self, line='', cell=None):
+    def gcc_run(self, line='', cell=None):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit:
