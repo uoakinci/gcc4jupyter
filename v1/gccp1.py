@@ -21,7 +21,7 @@ class GCCPlugin(Magics):
     @staticmethod
     def compile(file_path):
         subprocess.check_output(
-            [compiler, file_path + ext, "-o", file_path + ".out", '-Wno-deprecated-gpu-targets'], stderr=subprocess.STDOUT)
+            [compiler, file_path + ext, "-o", file_path + ".out", '-Wno-deprecated'], stderr=subprocess.STDOUT)
 
     def run(self, file_path, timeit=False):
         if timeit:
@@ -37,7 +37,7 @@ class GCCPlugin(Magics):
         return None
 
     @cell_magic
-    def cu(self, line, cell):
+    def cpp(self, line, cell):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit as e:
