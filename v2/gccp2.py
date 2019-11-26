@@ -29,7 +29,7 @@ class GCCPluginV2(Magics):
     def compile(output_dir, file_paths, out):
         res = subprocess.check_output(
             [compiler, '-I' + output_dir, file_paths, "-o", out, '-Wno-deprecated'], stderr=subprocess.STDOUT)
-        ghelper.print_out(res)
+        ghelper.print_out(res.decode('utf8'))
 
     def run(self, timeit=False):
         if timeit:
