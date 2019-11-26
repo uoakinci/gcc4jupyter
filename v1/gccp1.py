@@ -16,7 +16,7 @@ class GCCPlugin(Magics):
     def __init__(self, shell):
         super(GCCPlugin, self).__init__(shell)
 
-        self.argparser = helper.get_argparser()
+        self.argparser = ghelper.get_argparser()
 
     @staticmethod
     def compile(file_path):
@@ -33,7 +33,7 @@ class GCCPlugin(Magics):
                 [file_path + ".obj"], stderr=subprocess.STDOUT)
             output = output.decode('utf8')
             
-        helper.print_out(output)
+        ghelper.print_out(output)
         return None
 
     @cell_magic
@@ -52,6 +52,6 @@ class GCCPlugin(Magics):
                 self.compile(file_path)
                 output = self.run(file_path, timeit=args.timeit)
             except subprocess.CalledProcessError as e:
-                helper.print_out(e.output.decode("utf8"))
+                ghelper.print_out(e.output.decode("utf8"))
                 output = None
         return output
