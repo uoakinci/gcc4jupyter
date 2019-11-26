@@ -22,7 +22,7 @@ class GCCPluginV2(Magics):
         else:
             print(f'directory {self.output_dir} already exists')
 
-        self.out = os.path.join(current_dir, "result.out")
+        self.out = os.path.join(current_dir, "result.obj")
         print(f'Out bin {self.out}')
 
     @staticmethod
@@ -49,7 +49,7 @@ class GCCPluginV2(Magics):
     @argument('-c', '--compile', type=bool, help='Should be compiled?')
     @cell_magic
     def gcc(self, line='', cell=None):
-        args = parse_argstring(self.cuda, line)
+        args = parse_argstring(self.gcc, line)
         ex = args.name.split('.')[-1]
         if ex not in ['cpp', 'c', 'h']:
             raise Exception('name must end with .cpp, .c or .h')
