@@ -6,7 +6,7 @@ import uuid
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import helper
 
-compiler = '/usr/bin/gcc-5'
+compiler = '/usr/bin/g++-5'
 ext = '.cpp'
 
 
