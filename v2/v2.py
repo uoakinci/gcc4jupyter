@@ -5,14 +5,14 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
 
-compiler = '/usr/local/cuda/bin/nvcc'
+compiler = '/usr/bin/gcc-5'
 
 
 @magics_class
-class NVCCPluginV2(Magics):
+class GCCPlugin(Magics):
 
     def __init__(self, shell):
-        super(NVCCPluginV2, self).__init__(shell)
+        super(GCCPlugin, self).__init__(shell)
         self.argparser = helper.get_argparser()
         current_dir = os.getcwd()
         self.output_dir = os.path.join(current_dir, 'src')
@@ -28,7 +28,7 @@ class NVCCPluginV2(Magics):
     @staticmethod
     def compile(output_dir, file_paths, out):
         res = subprocess.check_output(
-            [compiler, '-I' + output_dir, file_paths, "-o", out, '-Wno-deprecated-gpu-targets'], stderr=subprocess.STDOUT)
+            [compiler, '-I' + output_dir, file_paths, "-o", out, '-Wno-deprecated'], stderr=subprocess.STDOUT)
         helper.print_out(res)
 
     def run(self, timeit=False):
@@ -45,14 +45,14 @@ class NVCCPluginV2(Magics):
         return None
 
     @magic_arguments()
-    @argument('-n', '--name', type=str, help='file name that will be produced by the cell. must end with .cu extension')
+    @argument('-n', '--name', type=str, help='file name that will be produced by the cell. must end with .cpp extension')
     @argument('-c', '--compile', type=bool, help='Should be compiled?')
     @cell_magic
     def cuda(self, line='', cell=None):
         args = parse_argstring(self.cuda, line)
         ex = args.name.split('.')[-1]
-        if ex not in ['cu', 'h']:
-            raise Exception('name must end with .cu or .h')
+        if ex not in ['cpp', 'c', 'h']:
+            raise Exception('name must end with .cpp, .c or .h')
 
         if not os.path.exists(self.output_dir):
             print(f'Output directory does not exist, creating')
