@@ -5,7 +5,7 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from common import helper
 
-compiler = '/usr/bin/gcc-5'
+compiler = '/usr/bin/g++-5'
 
 
 @magics_class
