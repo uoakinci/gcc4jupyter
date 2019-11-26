@@ -5,7 +5,7 @@ setup(
     version='0.0.1',
     author='Uğur Özgü Akıncı',
     author_email='uoakinci@gmail.com',
-    py_modules=['gcc_plugin', 'v1.gccp1', 'v2.gccp2', 'common.ghelper'],
+    py_modules=['gcc_plugin', 'v1a.gccp1', 'v2a.gccp2', 'gcommon.ghelper'],
     url='htpps://github.com/uoakinci/gcc4jupyter',
     license='LICENSE',
     description='Jupyter notebook plugin to run GCC C/C++ code. Forked from Andrei Nechaev\'s nvcc4jupyter @ https://github.com/andreinechaev/nvcc4jupyter',
